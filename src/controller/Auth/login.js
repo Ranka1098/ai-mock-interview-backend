@@ -1,4 +1,5 @@
 import userModel from "../../model/user.js";
+import bcrypt from "bcrypt";
 
 const login = async (req, res) => {
   try {
@@ -11,11 +12,15 @@ const login = async (req, res) => {
       });
     }
 
-    if (user.password !== password) {
-      return res.status(400).json({ message: "password is wrong" });
+    const matchPassword = await bcrypt.compare(password, user.password);
+
+    if (!matchPassword) {
+      return res
+        .status(400)
+        .json({ message: "password is not matched give right password" });
     }
 
-    res.status(200).json({ message: "loggedin successfully" });
+    res.status(200).json({ message: "loggedin successfully", user: user });
   } catch (error) {
     return res.status(500).json({
       message: "failed to login",

@@ -1,4 +1,5 @@
 import userModel from "../../model/user.js";
+import bcrypt from "bcrypt";
 
 const register = async (req, res) => {
   try {
@@ -13,16 +14,17 @@ const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("Hashed Password:", hashedPassword);
 
-    await userModel.create({
+    const user = await userModel.create({
       firstName,
       lastName,
       email,
       password: hashedPassword,
     });
 
-    res.status(201).json({ message: "new user created successfully" });
+    res
+      .status(201)
+      .json({ message: "new user created successfully", user: user });
   } catch (error) {
     res
       .status(500)
