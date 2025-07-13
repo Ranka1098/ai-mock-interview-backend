@@ -12,7 +12,15 @@ const register = async (req, res) => {
       });
     }
 
-    await userModel.create({ firstName, lastName, email, password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("Hashed Password:", hashedPassword);
+
+    await userModel.create({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+    });
 
     res.status(201).json({ message: "new user created successfully" });
   } catch (error) {
