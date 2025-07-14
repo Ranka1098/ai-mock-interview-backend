@@ -57,3 +57,18 @@
 14. create jwt token using jsonwebtoken library
 15. send token inside cookie
 16. success login message
+
+17. foreget password routes
+18. take email from req.body
+19. genrate opt
+20. generate otpexpires
+21. save user in databse
+22. sendEmail() through send otp and success responce
+
+23. verify password routes create
+24. take otp from req.body
+25. chaeck otp is expired or not
+26. hashed password generate using bcrypt library
+27. otp and otpExpire make to undefine
+28. user save into datbase
+29. success responce
