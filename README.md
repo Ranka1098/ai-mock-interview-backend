@@ -72,3 +72,13 @@
 27. otp and otpExpire make to undefine
 28. user save into datbase
 29. success responce
+
+30. resend otp
+31. take email from otp component
+32. check email exist or not
+33. check otp is expire or not
+34. generate new otp
+35. create new otp
+36. save user into database
+37. send email function through new otp
+38. success responce message

@@ -5,6 +5,7 @@ import register from "../controller/Auth/register.js";
 import verifyOtp from "../controller/Auth/verifyOtp.js";
 import forgetPassword from "../controller/Auth/forgetPassword.js";
 import verifyPassword from "../controller/Auth/verifyPassword.js";
+import resendOtp from "../controller/Auth/resendotp.js";
 
 const AuthRouter = express.Router();
 
@@ -13,5 +14,6 @@ AuthRouter.post("/api/auth/login", login);
 AuthRouter.post("/api/auth/verifyOtp", verifyOtp);
 AuthRouter.post("/api/auth/forgetpassword", forgetPassword);
 AuthRouter.post("/api/auth/verifypassword", verifyPassword);
+AuthRouter.post("/api/auth/resenotp", resendOtp);
 
 export default AuthRouter;
