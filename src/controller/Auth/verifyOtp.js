@@ -12,7 +12,7 @@ const verifyOtp = async (req, res) => {
       return res.status(400).json({ message: "user alrady verified" });
     }
 
-    if (user.otp !== otp) {
+    if (user.otp !== String(otp)) {
       return res
         .status(400)
         .json({ message: "otp is not matched try with valid otp" });

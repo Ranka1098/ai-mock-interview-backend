@@ -13,7 +13,7 @@ const register = async (req, res) => {
     const existingUser = await userModel.findOne({ email });
 
     const otp = generateOtp();
-    const otpExpires = new Date(Date.now() + 5 * 60 * 1000);
+    const otpExpires = new Date(Date.now() + 60 * 1000);
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // this code two situation ko handle kar rah hai

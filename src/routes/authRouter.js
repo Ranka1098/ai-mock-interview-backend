@@ -14,6 +14,6 @@ AuthRouter.post("/api/auth/login", login);
 AuthRouter.post("/api/auth/verifyOtp", verifyOtp);
 AuthRouter.post("/api/auth/forgetpassword", forgetPassword);
 AuthRouter.post("/api/auth/verifypassword", verifyPassword);
-AuthRouter.post("/api/auth/resenotp", resendOtp);
+AuthRouter.post("/api/auth/resendotp", resendOtp);
 
 export default AuthRouter;
