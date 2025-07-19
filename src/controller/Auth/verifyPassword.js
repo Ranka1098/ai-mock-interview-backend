@@ -3,9 +3,9 @@ import bcrypt from "bcrypt";
 
 const verifyPassword = async (req, res) => {
   try {
-    const { otp, password } = req.body;
+    const { otp, email, password } = req.body;
 
-    const user = await userModel.findOne({ otp });
+    const user = await userModel.findOne({ email, otp });
     if (!user) {
       return res.status(400).send({ message: "user not found" });
     }
