@@ -6,14 +6,16 @@ import verifyOtp from "../controller/Auth/verifyOtp.js";
 import forgetPassword from "../controller/Auth/forgetPassword.js";
 import verifyPassword from "../controller/Auth/verifyPassword.js";
 import resendOtp from "../controller/Auth/resendotp.js";
+import googleLogin from "../controller/Auth/googleLogin.js";
 
 const AuthRouter = express.Router();
 
-AuthRouter.post("/api/auth/register", register);
-AuthRouter.post("/api/auth/login", login);
-AuthRouter.post("/api/auth/verifyOtp", verifyOtp);
-AuthRouter.post("/api/auth/forgetpassword", forgetPassword);
-AuthRouter.post("/api/auth/verifypassword", verifyPassword);
-AuthRouter.post("/api/auth/resendotp", resendOtp);
+AuthRouter.post("/register", register);
+AuthRouter.post("/login", login);
+AuthRouter.post("/verifyOtp", verifyOtp);
+AuthRouter.post("/forgetpassword", forgetPassword);
+AuthRouter.post("/verifypassword", verifyPassword);
+AuthRouter.post("/resendotp", resendOtp);
+AuthRouter.post("/googleLogin", googleLogin);
 
 export default AuthRouter;

@@ -22,6 +22,13 @@ const register = async (req, res) => {
 
     // case 1.user exist but not verified
     if (existingUser) {
+      if (existingUser.provider === "google") {
+        return res.status(400).json({
+          message:
+            "This email is already used with Google login. Please login with Google.",
+        });
+      }
+
       if (existingUser.isVerified) {
         return res.status(400).json({
           message:
@@ -33,6 +40,7 @@ const register = async (req, res) => {
         existingUser.otp = otp;
         existingUser.otpExpires = otpExpires;
         existingUser.password = hashedPassword;
+        existingUser.provider = "email";
         await existingUser.save();
 
         await sendEmail(
@@ -57,6 +65,7 @@ const register = async (req, res) => {
       otp,
       otpExpires,
       isVerified: false,
+      provider: "email",
     });
 
     await sendEmail(

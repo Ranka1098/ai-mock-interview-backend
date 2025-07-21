@@ -13,6 +13,13 @@ const login = async (req, res) => {
       });
     }
 
+    if (user.provider !== "email") {
+      return res.status(400).json({
+        message:
+          "This email is registered with Google. Please use Google login instead.",
+      });
+    }
+
     const matchPassword = await bcrypt.compare(password, user.password);
 
     if (!matchPassword) {

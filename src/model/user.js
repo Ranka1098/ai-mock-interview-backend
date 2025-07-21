@@ -26,8 +26,15 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       trim: true,
-      required: true,
       minLength: 6,
+      required: function () {
+        return this.provider === "email";
+      },
+    },
+    provider: {
+      type: String,
+      enum: ["email", "google"],
+      default: "email",
     },
     otp: {
       type: String,
@@ -38,6 +45,9 @@ const userSchema = new mongoose.Schema(
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    picture: {
+      type: String,
     },
   },
   {

@@ -1,18 +1,24 @@
 import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
 import cors from "cors";
 import ConnectDb from "./src/database/db.js";
 import AuthRouter from "./src/routes/authRouter.js";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    withCredential: true,
+  })
+);
 const PORT = process.env.PORT || 3000;
 
-app.use("/", AuthRouter);
+app.use("/api/auth", AuthRouter);
 
 ConnectDb()
   .then(() => {
