@@ -11,6 +11,13 @@ const forgetPassword = async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
+    if (user.provider === "google") {
+      return res.status(400).send({
+        message:
+          "This account was registered via Google. Please use Google login.",
+      });
+    }
+
     if (!user) {
       return res.status(400).send({ message: "user not exist" });
     }
