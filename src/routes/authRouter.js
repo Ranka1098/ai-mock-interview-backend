@@ -9,6 +9,7 @@ import resendOtp from "../controller/Auth/resendotp.js";
 import googleLogin from "../controller/Auth/googleLogin.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import profile from "../controller/Auth/profile.js";
+import logout from "../controller/Auth/logout.js";
 
 const AuthRouter = express.Router();
 
@@ -20,5 +21,6 @@ AuthRouter.post("/verifypassword", verifyPassword);
 AuthRouter.post("/resendotp", resendOtp);
 AuthRouter.post("/googleLogin", googleLogin);
 AuthRouter.get("/profile", authMiddleware, profile);
+AuthRouter.post("/logout", logout);
 
 export default AuthRouter;
