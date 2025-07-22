@@ -10,12 +10,14 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    withCredential: true,
+    origin: "http://localhost:5173", // ✅ your frontend
+    credentials: true, // ✅ cookies allowed
   })
 );
+
 const PORT = process.env.PORT || 3000;
 
 app.use("/api/auth", AuthRouter);

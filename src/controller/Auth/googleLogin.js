@@ -1,8 +1,13 @@
 import userModel from "../../model/user.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 const googleLogin = async (req, res) => {
   try {
     const { email, photoURL, firstName = "", lastName = "" } = req.body;
+
+    const SECRET_KEY = process.env.SECRET_KEY;
 
     let user = await userModel.findOne({ email });
 
@@ -24,15 +29,23 @@ const googleLogin = async (req, res) => {
       });
     }
 
+    const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY, {
+      expiresIn: "7d",
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
     res.status(200).json({
-      success: true,
-      message: "Google Login Successful",
+      message: "google Login successful",
       user,
     });
   } catch (error) {
     console.error("Google login error:", error);
     res.status(500).json({
-      success: false,
       message: "Internal Server Error",
     });
   }
